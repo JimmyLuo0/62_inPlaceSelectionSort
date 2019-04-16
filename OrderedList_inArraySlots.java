@@ -17,24 +17,55 @@ public class OrderedList_inArraySlots
      */
     public OrderedList_inArraySlots
             ( ArrayList<Integer> unordered) {
-        this();  // violates the directions for this hw
-        
-        System.out.println( 
-            "Change this to report on progress."
-          + System.lineSeparator()
-          + "You were going to do that even without prompting, right?"
-          );
-    }
+		for(int iteration = 0; iteration < unordered.size(); iteration++){
+				int nextLargerAt = champIndex(iteration, unordered);
+				int replaced = unordered.get(iteration);
+				unordered.set(iteration, unordered.get(nextLargerAt));
+				unordered.set(nextLargerAt, replaced);
+				System.out.println( 
+            "smallest element is at index " + nextLargerAt 
+          + " and has the value " + unordered.get( nextLargerAt));
+			}
+		list_iAS = unordered;
+	}
 
 
     /** 
       helper function for constructor
+	  returns index of smallest integer
       Write good English here, reflecting good thinking.
       @return ??
      */
-     private int champIndex() {
+    /*  private int champIndex() {
         return 0;  // replace this line
-     }
+     } */
+	 
+	 private int champIndex(int indexToCheck, ArrayList<Integer> challengers) {
+		 int champIndex = 0;
+		 int currentIndex = 0;
+		 int champ = Integer.MAX_VALUE;
+		 for(int index = indexToCheck; index < challengers.size(); index++){
+			 if (challengers.get(index) < champ){
+				 champIndex = currentIndex;
+				 champ = challengers.get(index);
+			 }
+			 currentIndex++;
+		 }
+		 return champIndex;
+	 }
+					
+		 /* int champIndex = 0;
+		 int index = 0;
+		 int champ = Integer.MAX_VALUE;
+		 for(Integer els: challengers){
+			 if (els < champ){
+				 champIndex = index; 
+				 champ = els;
+			 }
+			 index++;
+		 }
+			 return champIndex;
+     } */
 
 
     // ------ code from previous assignments below here ----
